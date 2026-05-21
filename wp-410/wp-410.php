@@ -3,7 +3,9 @@
  * Plugin Name:       HTTP 410 (Gone) responses
  * Plugin URI:        https://wordpress.org/plugins/wp-410/
  * Description:       Sends HTTP 410 (Gone) responses to requests for pages that no longer exist on your blog.
- * Version:           1.0.3
+ * Version:           1.1.0
+ * Requires at least: 5.0
+ * Requires PHP:      7.4
  * Author:            Samir Shah
  * Author URI:        http://rayofsolaris.net/
  * Maintainer:        Matt Calvert
@@ -344,7 +346,7 @@ class MCLV_410_Plugin {
 			'mclv-410-admin',
 			plugin_dir_url( __FILE__ ) . 'css/admin.css',
 			array(),
-			'1.0.3'
+			'1.1.0'
 		);
 
 		// Enqueue admin JavaScript.
@@ -352,8 +354,8 @@ class MCLV_410_Plugin {
 			'mclv-410-admin',
 			plugin_dir_url( __FILE__ ) . 'js/admin.js',
 			array(),
-			'1.0.3',
-			true
+			'1.1.0',
+			array( 'in_footer' => true )
 		);
 	}
 

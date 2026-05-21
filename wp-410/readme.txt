@@ -1,9 +1,10 @@
 === HTTP 410 (Gone) responses ===
 Contributors: solarissmoke, XanderCalvert
 Tags: error, gone, robots
-Requires at least: 3.7
-Tested up to: 6.9
-Stable tag: 1.0.3
+Requires at least: 5.0
+Tested up to: 7.0
+Stable tag: 1.1.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +36,12 @@ The plugin has been tested with the following caching plugins, and should work e
 I have not tested it with other caching plugins, and there is a high chance that it **will not work** with many of them. Most of them will cache the response as if it is a 404 (page not found) response, and issue a 404 response header instead of a 410 response header.
 
 == Changelog ==
+
+= 1.1.0 =
+* Compatibility: Tested and confirmed working on WordPress 7.0.
+* Updated minimum WordPress requirement to 5.0.
+* Added Requires PHP: 7.4 declaration to match WordPress 7.0 minimum.
+* Updated admin script enqueue to use the modern $args array form (WP 6.3+).
 
 = 1.0.3 =
 * Official release build for WordPress.org plugin directory.
