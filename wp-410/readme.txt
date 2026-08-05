@@ -3,7 +3,7 @@ Contributors: solarissmoke, XanderCalvert
 Tags: error, gone, robots
 Requires at least: 5.0
 Tested up to: 7.0
-Stable tag: 1.1.0
+Stable tag: 1.2.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -36,6 +36,20 @@ The plugin has been tested with the following caching plugins, and should work e
 I have not tested it with other caching plugins, and there is a high chance that it **will not work** with many of them. Most of them will cache the response as if it is a 404 (page not found) response, and issue a 404 response header instead of a 410 response header.
 
 == Changelog ==
+
+= 1.2.1 =
+* The "Maximum number of 404 errors to keep" setting is now capped at 10,000 to prevent unbounded growth of the logged-404s table.
+* Fixed the "Recent 404 errors" pagination controls floating away from the table above them; they now stay aligned beneath it.
+
+= 1.2.0 =
+* **Bugfix:** Fixed a bug where selecting a large number of logged 404 entries (or 410/wildcard URLs) and submitting the bulk "Add"/"Delete" forms could silently reload the page without making any changes. This happened because very large selections could exceed PHP's `max_input_vars` limit, dropping the nonce/action fields the plugin relied on to detect which button was clicked.
+* Admin bulk actions are now identified by an explicit hidden `mclv_410_action` field (emitted, along with the nonce, before the checkbox list) instead of by which submit button was clicked.
+* Bulk operations now submit database IDs instead of full URLs, and are processed with chunked `WHERE gone_id IN (...)` queries instead of one query per row.
+* The "Obsolete URLs", "Wildcard Patterns" and "Recent 404 errors" tables are now paginated (100 rows per page by default, filterable via `mclv_410_admin_per_page`) so the admin page never has to render or submit an unbounded number of rows at once. Pagination works without JavaScript, and "select all" only affects the current page.
+* Admin form submissions now use a Post/Redirect/Get pattern, so reloading the settings page after a successful operation does not repeat it.
+* Notices after an admin action now report specific outcomes (e.g. "182 logged 404 entries were added to the 410 list.") instead of a generic "Options updated." message.
+* **Bugfix:** The page-caching notice no longer implies that an unsupported caching plugin has been detected merely because `WP_CACHE` is enabled. It now describes page caching as informational, explains this is expected with W3 Total Cache and WP Super Cache, and notes that other caching systems (including host-level caching) may need configuration.
+* The manual "add URLs" textarea now accepts a maximum of 500 URLs per submission, with a clear notice if that's exceeded, to avoid very large pastes running into PHP execution-time limits.
 
 = 1.1.0 =
 * Compatibility: Tested and confirmed working on WordPress 7.0.

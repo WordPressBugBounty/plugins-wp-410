@@ -21,6 +21,21 @@ p.invalid {
 	overflow-y: scroll;
 }
 
+.mclv-410-table-wrap + .tablenav {
+	max-width: 890px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	float: none;
+}
+
+.mclv-410-table-wrap + .tablenav .tablenav-pages {
+	float: none;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
 /* Wildcard patterns section */
 .mclv-410-wildcard-notice {
 	background: #FFF8E5;
